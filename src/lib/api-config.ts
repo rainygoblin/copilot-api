@@ -16,9 +16,7 @@ const API_VERSION = "2025-04-01"
 const stripTrailingSlash = (url: string) => url.replace(/\/+$/, "")
 
 export const copilotBaseUrl = (state: State) =>
-  process.env.COPILOT_API_BASE_URL ?
-    stripTrailingSlash(process.env.COPILOT_API_BASE_URL)
-  : state.accountType === "individual" ?
+  state.accountType === "individual" ?
     "https://api.githubcopilot.com"
   : `https://api.${state.accountType}.githubcopilot.com`
 export const copilotHeaders = (state: State, vision: boolean = false) => {
